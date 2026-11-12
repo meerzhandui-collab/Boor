@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ky">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Бир боор бир туугандарга чакыруу</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background:
+    radial-gradient(circle at top, #514027, #17130d 65%, #080706);
+    color: #f5dfaa;
+    font-family: Georgia, serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    overflow-x: hidden;
+}
+
+.stars {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+}
+
+.star {
+    position: absolute;
+    color: #f8df9d;
+    animation: sparkle 2s infinite alternate;
+}
+
+@keyframes sparkle {
+    from { opacity: .2; transform: scale(.7); }
+    to { opacity: 1; transform: scale(1.4); }
+}
+
+.container {
+    width: 100%;
+    max-width: 470px;
+    text-align: center;
+}
+
+.envelope {
+    position: relative;
+    width: 100%;
+    height: 260px;
+    background: linear-gradient(145deg,#e9d5a2,#9f793d);
+    border: 3px solid #f9e5b0;
+    border-radius: 12px;
+    box-shadow: 0 0 35px #c5a45b80;
+    cursor: pointer;
+    overflow: hidden;
+    transition: .8s;
+}
+
+.envelope:before {
+    content: "✦";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 75px;
+    color: #5b421d;
+    text-shadow: 0 2px 10px #fff2c5;
+}
+
+.envelope p {
+    position: absolute;
+    bottom: 28px;
+    width: 100%;
+    color: #493313;
+    font-size: 17px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.seal {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    background: linear-gradient(145deg,#fff0bd,#a67b34);
+    border: 2px solid #fff1c7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    color: #573d19;
+}
+
+.invitation {
+    display: none;
+    background: linear-gradient(145deg,#292116,#100e0a);
+    border: 2px solid #d5b36d;
+    outline: 1px solid #8b6b37;
+    outline-offset: -10px;
+    padding: 40px 25px;
+    border-radius: 8px;
+    box-shadow: 0 0 45px #c9a65c50;
+    animation: appear 1.5s ease;
+}
+
+@keyframes appear {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.invitation .top {
+    font-size: 35px;
+    color: #e8c77d;
+    margin-bottom: 12px;
+}
+
+.invitation h1 {
+    font-size: 29px;
+    line-height: 1.4;
+    color: #f5d99a;
+    text-shadow: 0 0 15px #c9a45c70;
+}
+
+.line {
+    width: 75%;
+    height: 1px;
+    background: linear-gradient(90deg,transparent,#e4c17b,transparent);
+    margin: 23px auto;
+}
+
+.invitation h2 {
+    font-size: 23px;
+    color: #fff0c7;
+    margin-bottom: 17px;
+}
+
+.text {
+    font-size: 17px;
+    line-height: 1.8;
+    color: #f2e5c9;
+}
+
+.date {
+    font-size: 30px;
+    color: #eac879;
+    margin: 22px 0 10px;
+    font-weight: bold;
+}
+
+.place {
+    font-size: 18px;
+    color: #f5d99a;
+    line-height: 1.7;
+}
+
+.names {
+    font-size: 25px;
+    color: #eac879;
+    margin-top: 18px;
+    line-height: 1.8;
+}
+
+.footer {
+    margin-top: 25px;
+    color: #cbb78f;
+    font-size: 15px;
+    font-style: italic;
+}
+
+button {
+    margin-top: 20px;
+    background: linear-gradient(135deg,#f3d99d,#ad843f);
+    color: #24190a;
+    border: none;
+    padding: 13px 28px;
+    border-radius: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 0 20px #d9b66d60;
+}
+
+@media(max-width:400px) {
+    .invitation { padding: 35px 18px; }
+    .invitation h1 { font-size: 25px; }
+    .text { font-size: 15px; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="stars" id="stars"></div>
+
+<div class="container">
+
+<div class="envelope" id="envelope" onclick="openInvitation()">
+    <div class="seal">✦</div>
+    <p>СИЗГЕ АРНАЛГАН ЧАКЫРУУ</p>
+</div>
+
+<div class="invitation" id="invitation">
+
+<div class="top">❦ ✨ ❦</div>
+
+<h1>БИР БООР<br>БИР ТУУГАНДАРГА!</h1>
+
+<div class="line"></div>
+
+<h2>Ардактуу бир туугандарыбыз!</h2>
+
+<div class="text">
+Бир атадан, бир энеден тараган,<br>
+бир туугандык мээримге бөлөнгөн<br>
+кымбаттуу бир боорлорубуз!
+
+<br><br>
+
+Сиздерди үй-бүлөлүк кубанычыбызга,<br>
+үй той жана келин той салтанатыбызга<br>
+чын жүрөктөн чакырабыз!
+
+<br><br>
+
+Бул кубанычтуу күнүбүздө<br>
+сиздердин катышууңуздар биз үчүн<br>
+эң чоң белек жана сыймык!
+</div>
+
+<div class="line"></div>
+
+<div class="date">
+25 НОЯБРЬ
+</div>
+
+<div class="place">
+📍 Дареги: Үйүбүздө өтөт<br>
+🏡 Аксы району
+</div>
+
+<div class="line"></div>
+
+<div class="text">
+Той ээлери:
+</div>
+
+<div class="names">
+❀ Бубайым ❀<br>
+❀ Айгүл ❀<br>
+❀ Нуржигит ❀
+</div>
+
+<div class="line"></div>
+
+<div class="footer">
+Бир туугандык байланышыбыз<br>
+ар дайым бекем болсун!<br><br>
+
+Кубанычыбызды тең бөлүшүп,<br>
+төрүбүздүн көркү болуп кетиңиздер! ❤️
+
+<br><br>
+Сиздерди чыдамсыздык менен күтөбүз!
+</div>
+
+<div class="top" style="margin-top:20px;">✦ ❦ ✦</div>
+
+</div>
+</div>
+
+<script>
+
+function openInvitation() {
+    document.getElementById("envelope").style.display = "none";
+    document.getElementById("invitation").style.display = "block";
+}
+
+const stars = document.getElementById("stars");
+
+for(let i=0; i<45; i++){
+    let star = document.createElement("div");
+    star.className = "star";
+    star.innerHTML = "✦";
+    star.style.left = Math.random()*100 + "%";
+    star.style.top = Math.random()*100 + "%";
+    star.style.fontSize = (8+Math.random()*15)+"px";
+    star.style.animationDelay = Math.random()*3+"s";
+    stars.appendChild(star);
+}
+
+</script>
+
+</body>
+</html>
